@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { FiPower, FiTrash2 } from "react-icons/fi";
 
 import api from "../../services/api";
-import "./styles.css";
+import { ProfileContainer, Header, LogoutButton, List } from "./styles";
+import { ButtonLink } from "../../styles/global";
 
 import logoImg from "../../assets/logo.svg";
 
@@ -16,10 +17,10 @@ export default function Profile() {
   const ongName = localStorage.getItem("ongName");
 
   /*
-   Dispara uma função em um determinado momento do component
+   Dispara uma função em um determinado momento do componente
    Recebe dois parametros: 
     -> 1: qual função a ser executada 
-    -> 2: quando ser executada. Sempre que estar dependencias mudarem a função é executada.
+    -> 2: quando ser executada. Sempre que estas dependencias mudarem a função é executada.
           Quando o array está vazio, executa apenas uma vez.
   */
   useEffect(() => {
@@ -52,23 +53,21 @@ export default function Profile() {
   }
 
   return (
-    <div className="profile-container">
-      <header>
+    <ProfileContainer>
+      <Header>
         <img src={logoImg} alt="Be The Hero" />
         <span>Bem vinda, {ongName}</span>
 
-        <Link className="button" to="/incidents/new">
-          Cadastrar novo caso
-        </Link>
+        <ButtonLink to="/incidents/new">Cadastrar novo caso</ButtonLink>
 
-        <button type="button" onClick={handleLogout}>
+        <LogoutButton type="button" onClick={handleLogout}>
           <FiPower size={18} color="#e02041" />
-        </button>
-      </header>
+        </LogoutButton>
+      </Header>
 
       <h1>Casos cadastrados</h1>
 
-      <ul>
+      <List>
         {incidents.map(incident => (
           <li key={incident.id}>
             <strong>CASO:</strong>
@@ -93,7 +92,7 @@ export default function Profile() {
             </button>
           </li>
         ))}
-      </ul>
-    </div>
+      </List>
+    </ProfileContainer>
   );
 }

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
 
 import api from "../../services/api";
-import "./styles.css";
+import { NewIncidentContainer, Content, Form } from "./styles";
+import { Button, BackLink } from "../../styles/global";
 
 import logoImg from "../../assets/logo.svg";
 
@@ -38,8 +39,8 @@ export default function NewIncident() {
   }
 
   return (
-    <div className="new-incident-container">
-      <div className="content">
+    <NewIncidentContainer>
+      <Content>
         <section>
           <img src={logoImg} alt="Be The Hero" />
 
@@ -49,13 +50,13 @@ export default function NewIncident() {
             isso.
           </p>
 
-          <Link className="back-link" to="/profile">
+          <BackLink to="/profile">
             <FiArrowLeft size={16} color="#E02041" />
             Voltar para home
-          </Link>
+          </BackLink>
         </section>
 
-        <form onSubmit={handleNewIncident}>
+        <Form onSubmit={handleNewIncident}>
           <input
             placeholder="Título do caso"
             value={title}
@@ -74,11 +75,9 @@ export default function NewIncident() {
             onChange={e => setValue(e.target.value)}
           />
 
-          <button className="button" type="submit">
-            Cadastrar
-          </button>
-        </form>
-      </div>
-    </div>
+          <Button type="submit">Cadastrar</Button>
+        </Form>
+      </Content>
+    </NewIncidentContainer>
   );
 }

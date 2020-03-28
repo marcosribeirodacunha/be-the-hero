@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
 
 import api from "../../services/api";
-import "./styles.css";
+import { Button, BackLink } from "../../styles/global";
+import { RegisterContainer, Content, Form, InputGroup } from "./styles";
 
 import logoImg from "../../assets/logo.svg";
 
@@ -39,8 +40,8 @@ export default function Register() {
   }
 
   return (
-    <div className="register-container">
-      <div className="content">
+    <RegisterContainer>
+      <Content>
         <section>
           <img src={logoImg} alt="Be The Hero" />
 
@@ -50,13 +51,13 @@ export default function Register() {
             os casos da sua ONG.
           </p>
 
-          <Link className="back-link" to="/">
+          <BackLink className="back-link" to="/">
             <FiArrowLeft size={16} color="#E02041" />
             Voltar para o logon
-          </Link>
+          </BackLink>
         </section>
 
-        <form onSubmit={handleRegister}>
+        <Form onSubmit={handleRegister}>
           <input
             placeholder="Nome da ONG"
             value={name}
@@ -74,7 +75,7 @@ export default function Register() {
             onChange={e => setWhatsapp(e.target.value)}
           />
 
-          <div className="input-group">
+          <InputGroup>
             <input
               placeholder="Cidade"
               value={city}
@@ -86,13 +87,13 @@ export default function Register() {
               value={uf}
               onChange={e => setUf(e.target.value)}
             />
-          </div>
+          </InputGroup>
 
-          <button className="button" type="submit">
+          <Button className="button" type="submit">
             Cadastrar
-          </button>
-        </form>
-      </div>
-    </div>
+          </Button>
+        </Form>
+      </Content>
+    </RegisterContainer>
   );
 }

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { FiLogIn } from "react-icons/fi";
 
 import api from "../../services/api";
-import "./styles.css";
+import { LogonContainer, Form } from "./styles";
+import { Button, BackLink } from "../../styles/global";
 
 import logoImg from "../../assets/logo.svg";
 import heroesImg from "../../assets/heroes.png";
@@ -28,11 +29,11 @@ export default function Logon() {
   }
 
   return (
-    <div className="logon-container">
-      <section className="form">
+    <LogonContainer>
+      <section>
         <img src={logoImg} alt="Be The Hero" />
 
-        <form onSubmit={handleLogon}>
+        <Form onSubmit={handleLogon}>
           <h1>Faça seu logon</h1>
 
           <input
@@ -41,18 +42,16 @@ export default function Logon() {
             onChange={e => setId(e.target.value)}
           />
 
-          <button className="button" type="submit">
-            Entrar
-          </button>
+          <Button type="submit">Entrar</Button>
 
-          <Link className="back-link" to="/register">
+          <BackLink to="/register">
             <FiLogIn size={16} color="#E02041" />
             Não tenho cadastro
-          </Link>
-        </form>
+          </BackLink>
+        </Form>
       </section>
 
       <img src={heroesImg} alt="Heroes" />
-    </div>
+    </LogonContainer>
   );
 }
